@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ithihaas Varigonda – Technology Engineering Apprentice CV</title>
+  <title>Ithihaas Varigonda – Student CV & Tech Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Online CV and portfolio for Ithihaas Varigonda, S6 student and Technology Engineering Graduate Apprentice applicant." />
+  <meta name="description" content="Online CV and portfolio for Ithihaas Varigonda, S6 student interested in software engineering, technology and robotics." />
   <style>
     :root {
-      --bg: #f4f7fb;
+      --bg: #eaeaf0;
       --card: #ffffff;
-      --accent: #1f4f8b;
+      --accent: #4d7edb;          /* one accent colour for tabs + headings */
       --accent-soft: #e2ecff;
       --text-main: #222222;
       --text-muted: #555555;
@@ -25,6 +25,10 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: var(--bg);
       color: var(--text-main);
@@ -38,7 +42,7 @@
     }
 
     .header {
-      background: linear-gradient(135deg, #1f4f8b, #4d7edb);
+      background: linear-gradient(135deg, #0f5bc5, #4dc1db);
       color: white;
       padding: 24px;
       border-radius: 18px;
@@ -48,10 +52,23 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* subtle highlight overlay */
+    .header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 55%);
+      pointer-events: none;
     }
 
     .header-main {
       max-width: 650px;
+      position: relative;
+      z-index: 1;
     }
 
     .name {
@@ -73,7 +90,7 @@
 
     .pill {
       display: inline-block;
-      padding: 2px 8px;
+      padding: 4px 10px;
       border-radius: 999px;
       background: rgba(0, 0, 0, 0.18);
       font-size: 0.75rem;
@@ -84,17 +101,47 @@
     .contact {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
       font-size: 0.9rem;
+      align-items: flex-end;
+      position: relative;
+      z-index: 1;
     }
 
     .contact a {
-      color: #e4ecff;
+      color: #e4f3ff;
       text-decoration: none;
     }
 
     .contact a:hover {
       text-decoration: underline;
+    }
+
+    .download-btn {
+      margin-top: 4px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #ffffff;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+      transition: transform 0.1s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .download-btn span.icon {
+      font-size: 1rem;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
+      background: #f5f7ff;
     }
 
     /* Tabs */
@@ -112,7 +159,7 @@
     .tab-button {
       border: none;
       border-radius: 999px;
-      padding: 8px 14px;
+      padding: 7px 14px;
       font-size: 0.85rem;
       background: var(--tab-inactive);
       color: #1f2937;
@@ -120,18 +167,28 @@
       transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .tab-button span.emoji {
       font-size: 1rem;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 4px;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.16);
     }
 
     .tab-button.active {
-      background: var(--tab-active);
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
-      color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
       font-weight: 600;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .tab-button.active span.emoji {
+      background: rgba(255, 255, 255, 0.2);
+      color: #ffffff;
     }
 
     .tab-button:hover {
@@ -165,13 +222,19 @@
       border: 1px solid var(--border);
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
       margin-bottom: 14px;
+      transition: box-shadow 0.18s ease, transform 0.12s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
     }
 
     .section-title {
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--accent);
+      color: var(--accent);   /* matches active tab colour */
       margin-bottom: 10px;
     }
 
@@ -195,6 +258,12 @@
       font-size: 0.75rem;
       border: 1px solid rgba(31, 79, 139, 0.1);
       white-space: nowrap;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(15, 23, 42, 0.1);
     }
 
     .panel-grid-2 {
@@ -212,6 +281,9 @@
       }
       .panel-grid-2 {
         grid-template-columns: 1fr;
+      }
+      .contact {
+        align-items: flex-start;
       }
     }
 
@@ -237,7 +309,7 @@
     .section-subtitle {
       font-size: 0.85rem;
       font-weight: 600;
-      margin-top: 10px;
+      margin-top: 12px;
       margin-bottom: 4px;
     }
 
@@ -280,6 +352,64 @@
     a {
       color: var(--accent);
     }
+
+    /* Print: show ALL sections, hide tabs & download button, no purple */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .page {
+        max-width: 100%;
+        margin: 0;
+      }
+      .header {
+        border-radius: 0;
+        box-shadow: none;
+        background: #ffffff !important;   /* no purple gradient in PDF */
+        color: #000000 !important;
+      }
+      .header::after {
+        display: none;
+      }
+      .pill {
+        background: #eeeeee !important;
+        color: #000000 !important;
+      }
+      .tabs {
+        display: none !important;
+      }
+
+      /* Show every tab panel when printing */
+      .tab-panel {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        page-break-inside: avoid;
+        margin-bottom: 18px !important;
+      }
+
+      .card {
+        box-shadow: none;
+        border-radius: 0;
+        border: 1px solid #cccccc;
+      }
+
+      .download-btn {
+        display: none !important;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: #000000 !important;      /* force black text */
+      }
+
+      body, .card, .tab-panel, table, th, td, p, li {
+        color: #000000 !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -287,10 +417,10 @@
     <!-- HEADER -->
     <header class="header">
       <div class="header-main">
-        <div class="pill">Technology Engineering Graduate Apprentice – CV</div>
+        <div class="pill">Student · Early Career Technology CV</div>
         <h1 class="name">Ithihaas Varigonda</h1>
         <div class="headline">
-          S6 Student &bull; Robotics Engineering Offer Holder – Heriot-Watt University
+          S6 Student · Robotics Engineering Offer Holder – Heriot-Watt University
         </div>
         <div class="location">
           Livingston, Scotland, United Kingdom
@@ -298,6 +428,10 @@
       </div>
       <div class="contact">
         <div><strong>Email:</strong> <a href="mailto:ivarigonda@gmail.com">ivarigonda@gmail.com</a></div>
+        <button class="download-btn" onclick="window.print()">
+          <span class="icon">📄</span>
+          Download CV (PDF)
+        </button>
       </div>
     </header>
 
@@ -332,14 +466,17 @@
               <h2 class="section-title">Profile</h2>
               <p class="summary">
                 I am an S6 student at West Calder High School, completing my studies in June 2026, with a strong interest
-                in software engineering, robotics and solving real-world problems through technology. I meet the academic
-                entry requirements for the Lloyds Banking Group Technology Engineering Graduate Apprenticeship and I am
-                actively developing my skills in Python, computing and user experience design through self-directed learning.
+                in software engineering, technology and robotics. I have a conditional offer to study Robotics Engineering
+                at Heriot-Watt University and I am also exploring technology-focused apprenticeships, internships and
+                school-leaver roles where I can learn on the job and contribute to real projects.
                 <br><br>
-                I am highly motivated and committed to helping others. Through my volunteering work at St John’s Hospital,
-                I have developed strong communication, teamwork and empathy. I also train regularly with a fitness coach,
-                which has strengthened my resilience, discipline and focus – qualities I bring into my learning and future
-                career.
+                I am actively building my skills in Python, computing and user experience design through self-directed
+                learning. I enjoy solving problems, understanding how systems work, and applying maths and science to
+                practical situations.
+                <br><br>
+                Outside the classroom, I volunteer at St John’s Hospital and train regularly with a fitness coach. These
+                experiences have helped me develop communication, teamwork, resilience and discipline – qualities I bring
+                to both my studies and future work.
               </p>
             </section>
 
@@ -355,7 +492,7 @@
                 <span class="tag">Problem Solving</span>
                 <span class="tag">Teamwork</span>
                 <span class="tag">Communication</span>
-                <span class="tag">Volunteering Experience</span>
+                <span class="tag">Volunteering</span>
                 <span class="tag">Fitness &amp; Wellbeing</span>
               </div>
             </aside>
@@ -366,6 +503,13 @@
         <section id="tab-education" class="tab-panel" role="tabpanel" aria-labelledby="education">
           <section class="card">
             <h2 class="section-title">Education &amp; Qualifications</h2>
+
+            <p>
+              <strong>University Offer</strong><br />
+              Conditional offer to study <strong>BEng Robotics Engineering</strong> at <strong>Heriot-Watt University</strong>.
+            </p>
+
+            <p class="section-subtitle">School</p>
             <p>
               <strong>West Calder High School</strong><br />
               S6 Pupil (Completing June 2026)
@@ -405,29 +549,90 @@
             </table>
 
             <p class="section-subtitle">Higher Grades (Achieved)</p>
-            <ul class="mini-list">
-              <li>Mathematics – A</li>
-              <li>English – B</li>
-              <li>Physics – C</li>
-              <li>Human Biology – C</li>
-              <li>Chemistry – C</li>
-            </ul>
+            <table class="grades-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Level</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mathematics</td>
+                  <td>Higher</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>English</td>
+                  <td>Higher</td>
+                  <td>B</td>
+                </tr>
+                <tr>
+                  <td>Physics</td>
+                  <td>Higher</td>
+                  <td>C</td>
+                </tr>
+                <tr>
+                  <td>Human Biology</td>
+                  <td>Higher</td>
+                  <td>C</td>
+                </tr>
+                <tr>
+                  <td>Chemistry</td>
+                  <td>Higher</td>
+                  <td>C</td>
+                </tr>
+              </tbody>
+            </table>
 
             <p class="section-subtitle">National 5 Grades (Achieved)</p>
-            <ul class="mini-list">
-              <li>Mathematics – A</li>
-              <li>English – B</li>
-              <li>Chemistry – C</li>
-              <li>Biology – C</li>
-              <li>Physics – C</li>
-              <li>Computing Science – D</li>
-              <li>Practical Electronics – B</li>
-            </ul>
-
-            <p class="section-subtitle">University Offer</p>
-            <p>
-              Conditional offer to study <strong>BEng Robotics Engineering</strong> at <strong>Heriot-Watt University</strong>.
-            </p>
+            <table class="grades-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Level</th>
+                  <th>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mathematics</td>
+                  <td>National 5</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>English</td>
+                  <td>National 5</td>
+                  <td>B</td>
+                </tr>
+                <tr>
+                  <td>Chemistry</td>
+                  <td>National 5</td>
+                  <td>C</td>
+                </tr>
+                <tr>
+                  <td>Biology</td>
+                  <td>National 5</td>
+                  <td>C</td>
+                </tr>
+                <tr>
+                  <td>Physics</td>
+                  <td>National 5</td>
+                  <td>C</td>
+                </tr>
+                <tr>
+                  <td>Computing Science</td>
+                  <td>National 5</td>
+                  <td>D</td>
+                </tr>
+                <tr>
+                  <td>Practical Electronics</td>
+                  <td>National 5</td>
+                  <td>B</td>
+                </tr>
+              </tbody>
+            </table>
           </section>
         </section>
 
@@ -438,15 +643,15 @@
             <ul class="mini-list">
               <li>
                 <strong>HackerRank – Python (Basic) Certificate</strong> (In progress)<br>
-                Building foundational programming skills in Python, including variables, loops, functions and problem solving in an online challenge environment.
+                Practising introductory Python problems to build core programming and problem-solving skills.
               </li>
               <li>
                 <strong>LinkedIn Learning – Getting Started with User Experience (UX/UI Design)</strong> (Completed)<br>
-                Learned the basics of user-centred design, interaction design and accessibility, and how UX influences modern digital products.
+                Introduction to user-centred design and how interfaces and experiences are planned.
               </li>
               <li>
                 <strong>Python CodeCamp Participation Award</strong><br>
-                Introduced to Python programming fundamentals, writing simple programs and understanding how code can be used to automate tasks.
+                First exposure to Python programming and writing simple scripts.
               </li>
             </ul>
           </section>
@@ -454,11 +659,14 @@
           <section class="card">
             <h2 class="section-title">Technical &amp; Other Skills</h2>
             <ul class="mini-list">
-              <li>Basic Python programming (HackerRank challenges and CodeCamp experience).</li>
-              <li>Introductory UX/UI design knowledge from LinkedIn Learning.</li>
-              <li>Hands-on electronics experience from National 5 Practical Electronics.</li>
-              <li>Strong numeracy and analytical skills from Maths at National 5, Higher and Advanced Higher level.</li>
-              <li>Confident using school IT systems and standard software (Microsoft Office, Google Workspace).</li>
+              <li>Basic Python programming (variables, loops, conditionals, simple scripts).</li>
+              <li>Familiar with online coding platforms such as HackerRank, SoloLearn and GitHub for practising and sharing code.</li>
+              <li>Awareness of UX/UI concepts and user-centred design.</li>
+              <li>Hands-on electronics experience (National 5 Practical Electronics).</li>
+              <li>Strong numeracy and analytical skills from Maths at multiple levels.</li>
+              <li>Confident using IT tools such as Microsoft Office and Google Workspace.</li>
+              <li>Teamwork, communication and empathy from hospital volunteering.</li>
+              <li>Resilience and self-discipline from regular fitness training.</li>
             </ul>
           </section>
         </section>
@@ -472,9 +680,9 @@
               <div class="project-name">NHS Volunteer</div>
               <div class="project-meta">St John’s Hospital, Livingston</div>
               <div class="project-desc">
-                • Supporting staff and patients with tasks around the hospital.<br>
-                • Developing empathy, communication, teamwork and responsibility in a real-world environment.<br>
-                • Demonstrates a commitment to helping others and contributing to the local community.
+                • Supporting staff and patients with tasks around the hospital (wayfinding, basic comfort checks, practical help as directed by staff).<br>
+                • Building communication skills, empathy and confidence working with the public.<br>
+                • Demonstrating reliability, responsibility and a commitment to helping others by attending regular shifts alongside school work.
               </div>
             </div>
 
@@ -483,8 +691,8 @@
               <div class="project-meta">Personal Development</div>
               <div class="project-desc">
                 • Training regularly under a fitness coach to improve physical and mental wellbeing.<br>
-                • Building resilience, discipline and a strong routine through consistent effort.<br>
-                • Developing a passion for fitness and an interest in supporting others as a future fitness trainer.
+                • Building resilience, discipline and a consistent routine.<br>
+                • Developing an interest in supporting others with fitness and confidence in the future.
               </div>
             </div>
           </section>
@@ -493,42 +701,39 @@
             <h2 class="section-title">Projects &amp; Technology Interests</h2>
 
             <div class="project-item">
-              <div class="project-name">Python Programming Practice (HackerRank)</div>
-              <div class="project-meta">In progress</div>
+              <div class="project-name">Python Practice (HackerRank)</div>
+              <div class="project-meta">Self-directed learning · In progress</div>
               <div class="project-desc">
-                • Solving beginner Python challenges to develop computational thinking and logical reasoning.<br>
-                • Learning to work with variables, loops, conditionals and functions.<br>
-                • Preparing for more advanced programming and future software engineering work.
+                • Solving small coding challenges to practise logic and problem solving.<br>
+                • Working with core Python features such as variables, loops and functions.<br>
+                • Building confidence to tackle larger software and data projects in the future.
               </div>
             </div>
 
             <div class="project-item">
-              <div class="project-name">User Experience (UX/UI) Foundations</div>
-              <div class="project-meta">Completed – LinkedIn Learning</div>
+              <div class="project-name">UX/UI Foundations</div>
+              <div class="project-meta">LinkedIn Learning</div>
               <div class="project-desc">
-                • Gained an introduction to user-centred design and interface principles.<br>
-                • Learned how accessibility, layout and user journeys impact digital products.<br>
-                • Building awareness of how software engineering and design work together in real applications.
+                • Exploring how users interact with digital products and what makes an interface clear and accessible.<br>
+                • Learning to think about user journeys, layouts and simple design decisions when planning screens.
               </div>
             </div>
 
             <div class="project-item">
-              <div class="project-name">Python CodeCamp Participation</div>
-              <div class="project-meta">Award Received</div>
+              <div class="project-name">Python CodeCamp</div>
+              <div class="project-meta">Participation Award</div>
               <div class="project-desc">
-                • Practised writing introductory Python programs to solve small problems.<br>
-                • Learned how code can be used to automate tasks and handle data.<br>
-                • Built confidence in learning new technologies independently.
+                • Took part in a structured introduction to Python programming.<br>
+                • Wrote simple programs and began understanding how code can automate tasks.
               </div>
             </div>
 
             <div class="project-item">
-              <div class="project-name">Practical Electronics &amp; STEM Learning</div>
+              <div class="project-name">Practical Electronics</div>
               <div class="project-meta">National 5 Practical Electronics</div>
               <div class="project-desc">
-                • Studied circuits, components and electronic systems in a practical setting.<br>
-                • Developed hands-on skills that support future robotics and engineering projects.<br>
-                • Improved understanding of how hardware and software interact.
+                • Worked with circuits, components and electronic systems in a practical setting.<br>
+                • Developed hands-on technical skills that support interests in robotics and engineering.
               </div>
             </div>
           </section>
@@ -539,11 +744,10 @@
           <section class="card">
             <h2 class="section-title">Achievements &amp; Activities</h2>
             <ul class="mini-list">
-              <li>West Lothian Badminton award for doubles, showing teamwork, coordination and discipline.</li>
-              <li>Volunteering at St John’s Hospital, helping staff and patients in a busy healthcare environment.</li>
-              <li>Completed LinkedIn Learning: Getting Started with User Experience (UX/UI Design).</li>
-              <li>Actively learning Python and problem solving through HackerRank challenges.</li>
-              <li>Committed to regular fitness training to build resilience, routine and mental wellbeing.</li>
+              <li>West Lothian Badminton award for doubles, showing teamwork, coordination and commitment.</li>
+              <li>Ongoing volunteering at St John’s Hospital in Livingston, supporting staff and patients.</li>
+              <li>Participation in Python CodeCamp, taking initiative to learn programming beyond school work.</li>
+              <li>Regular fitness training with a coach to improve resilience, routine and mental wellbeing.</li>
             </ul>
           </section>
 
@@ -553,7 +757,7 @@
               <li>Robotics and engineering, especially how software and hardware work together.</li>
               <li>Coding and learning new technologies, starting with Python and computing.</li>
               <li>Badminton, particularly doubles competitions.</li>
-              <li>Fitness and wellbeing, and supporting others to become healthier and more confident.</li>
+              <li>Fitness and wellbeing, and encouraging others to be active and confident.</li>
             </ul>
           </section>
         </section>
@@ -566,7 +770,9 @@
               <li><strong>Name:</strong> Ithihaas Varigonda</li>
               <li><strong>Location:</strong> Livingston, Scotland, United Kingdom</li>
               <li><strong>Email:</strong> <a href="mailto:ivarigonda@gmail.com">ivarigonda@gmail.com</a></li>
-              <li><strong>Availability:</strong> S6 student, completing school in June 2026. Open to Technology Engineering Graduate Apprenticeship roles.</li>
+              <li><strong>Availability:</strong> S6 student completing school in June 2026. Open to technology, software engineering and graduate apprenticeship opportunities.</li>
+              <li><strong>GitHub:</strong> <a href="https://github.com/ivarigonda" target="_blank">github.com/ivarigonda</a></li>
+              <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ithihaas-varigonda" target="_blank">linkedin.com/in/ithihaas-varigonda</a></li>
             </ul>
           </section>
         </section>
@@ -574,7 +780,7 @@
     </div>
 
     <footer class="footer">
-      © <span id="year"></span> Ithihaas Varigonda. Online CV for Graduate Apprenticeship applications.
+      © <span id="year"></span> Ithihaas Varigonda. Online CV & Technology Portfolio.
     </footer>
   </div>
 
