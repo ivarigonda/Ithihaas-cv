@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Ithihaas Varigonda – Robotics Apprenticeship CV</title>
+  <title>Ithihaas Varigonda – Technology Engineering Apprentice CV</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Online CV and portfolio for Ithihaas Varigonda, S6 student and Robotics Engineering offer holder at Heriot-Watt University." />
+  <meta name="description" content="Online CV and portfolio for Ithihaas Varigonda, S6 student and Technology Engineering Graduate Apprentice applicant." />
   <style>
     :root {
       --bg: #f4f7fb;
@@ -14,6 +14,8 @@
       --text-main: #222222;
       --text-muted: #555555;
       --border: #dde3f0;
+      --tab-active: #ffffff;
+      --tab-inactive: #e0e7f5;
     }
 
     * {
@@ -95,31 +97,74 @@
       text-decoration: underline;
     }
 
-    .layout {
-      margin-top: 24px;
-      display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
-      gap: 16px;
+    /* Tabs */
+    .tabs-wrapper {
+      margin-top: 20px;
     }
 
-    @media (max-width: 800px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-      body {
-        padding: 16px;
-      }
-      .header {
-        padding: 16px;
-      }
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
     }
 
+    .tab-button {
+      border: none;
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 0.85rem;
+      background: var(--tab-inactive);
+      color: #1f2937;
+      cursor: pointer;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-button span.emoji {
+      font-size: 1rem;
+    }
+
+    .tab-button.active {
+      background: var(--tab-active);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .tab-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+    }
+
+    .tab-panels {
+      margin-top: 4px;
+    }
+
+    .tab-panel {
+      display: none;
+      animation: fadeIn 0.15s ease-out;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(3px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Cards/layout inside panels */
     .card {
       background: var(--card);
       border-radius: 16px;
       padding: 18px 20px;
       border: 1px solid var(--border);
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+      margin-bottom: 14px;
     }
 
     .section-title {
@@ -152,6 +197,24 @@
       white-space: nowrap;
     }
 
+    .panel-grid-2 {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding: 16px;
+      }
+      .header {
+        padding: 16px;
+      }
+      .panel-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .grades-table {
       width: 100%;
       border-collapse: collapse;
@@ -178,6 +241,16 @@
       margin-bottom: 4px;
     }
 
+    .mini-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .mini-list li {
+      margin-bottom: 4px;
+    }
+
     .project-item {
       margin-bottom: 10px;
       font-size: 0.85rem;
@@ -197,21 +270,15 @@
       color: var(--text-muted);
     }
 
-    .mini-list {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .mini-list li {
-      margin-bottom: 4px;
-    }
-
     .footer {
       text-align: center;
       font-size: 0.75rem;
       color: var(--text-muted);
       margin-top: 18px;
+    }
+
+    a {
+      color: var(--accent);
     }
   </style>
 </head>
@@ -220,7 +287,7 @@
     <!-- HEADER -->
     <header class="header">
       <div class="header-main">
-        <div class="pill">Robotics Apprenticeship CV</div>
+        <div class="pill">Technology Engineering Graduate Apprentice – CV</div>
         <h1 class="name">Ithihaas Varigonda</h1>
         <div class="headline">
           S6 Student &bull; Robotics Engineering Offer Holder – Heriot-Watt University
@@ -234,188 +301,277 @@
       </div>
     </header>
 
-    <main class="layout">
-      <!-- LEFT MAIN COLUMN -->
-      <section class="card">
-        <h2 class="section-title">Profile</h2>
-        <p class="summary">
-          I am an S6 student at West Calder High School with a strong interest in robotics, engineering and problem solving.
-          I will complete S6 in June 2026. I have a conditional offer to study Robotics Engineering at Heriot-Watt
-          University and I am also keen to pursue a Graduate Apprenticeship so that I can learn in a real workplace while
-          contributing to a team. I enjoy applying maths and physics to practical challenges, developing my computing
-          skills, and maintaining discipline and wellbeing through fitness.
-        </p>
-      </section>
+    <!-- TABS -->
+    <div class="tabs-wrapper">
+      <div class="tabs" role="tablist" aria-label="CV sections">
+        <button class="tab-button active" data-tab="overview" role="tab" aria-selected="true" aria-controls="tab-overview">
+          <span class="emoji">🏠</span> Overview
+        </button>
+        <button class="tab-button" data-tab="education" role="tab" aria-selected="false" aria-controls="tab-education">
+          <span class="emoji">🎓</span> Education
+        </button>
+        <button class="tab-button" data-tab="courses" role="tab" aria-selected="false" aria-controls="tab-courses">
+          <span class="emoji">📚</span> Courses & Skills
+        </button>
+        <button class="tab-button" data-tab="experience" role="tab" aria-selected="false" aria-controls="tab-experience">
+          <span class="emoji">💼</span> Experience & Projects
+        </button>
+        <button class="tab-button" data-tab="achievements" role="tab" aria-selected="false" aria-controls="tab-achievements">
+          <span class="emoji">⭐</span> Achievements & Interests
+        </button>
+        <button class="tab-button" data-tab="contact" role="tab" aria-selected="false" aria-controls="tab-contact">
+          <span class="emoji">📨</span> Contact
+        </button>
+      </div>
 
-      <aside class="card">
-        <h2 class="section-title">Key Skills</h2>
-        <div class="tag-list">
-          <span class="tag">Robotics &amp; Engineering Interest</span>
-          <span class="tag">Mathematics</span>
-          <span class="tag">Physics</span>
-          <span class="tag">Computing</span>
-          <span class="tag">Problem Solving</span>
-          <span class="tag">Teamwork</span>
-          <span class="tag">Communication</span>
-          <span class="tag">Fitness &amp; Wellbeing</span>
-        </div>
-      </aside>
+      <div class="tab-panels">
+        <!-- OVERVIEW TAB -->
+        <section id="tab-overview" class="tab-panel active" role="tabpanel" aria-labelledby="overview">
+          <div class="panel-grid-2">
+            <section class="card">
+              <h2 class="section-title">Profile</h2>
+              <p class="summary">
+                I am an S6 student at West Calder High School, completing my studies in June 2026, with a strong interest
+                in software engineering, robotics and solving real-world problems through technology. I meet the academic
+                entry requirements for the Lloyds Banking Group Technology Engineering Graduate Apprenticeship and I am
+                actively developing my skills in Python, computing and user experience design through self-directed learning.
+                <br><br>
+                I am highly motivated and committed to helping others. Through my volunteering work at St John’s Hospital,
+                I have developed strong communication, teamwork and empathy. I also train regularly with a fitness coach,
+                which has strengthened my resilience, discipline and focus – qualities I bring into my learning and future
+                career.
+              </p>
+            </section>
 
-      <!-- EDUCATION & GRADES -->
-      <section class="card">
-        <h2 class="section-title">Education &amp; Qualifications</h2>
-        <p>
-          <strong>West Calder High School</strong><br />
-          S6 Pupil (Completing June 2026)
-        </p>
-
-        <p class="section-subtitle">S6 Subjects (Predicted Grades)</p>
-        <table class="grades-table">
-          <thead>
-            <tr>
-              <th>Subject</th>
-              <th>Level</th>
-              <th>Predicted Grade</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Mathematics</td>
-              <td>Advanced Higher</td>
-              <td>B</td>
-            </tr>
-            <tr>
-              <td>Biology</td>
-              <td>Higher</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Chemistry</td>
-              <td>Higher</td>
-              <td>A</td>
-            </tr>
-            <tr>
-              <td>Computing Science</td>
-              <td>Higher</td>
-              <td>B</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <p class="section-subtitle">Higher Grades (Achieved)</p>
-        <ul class="mini-list">
-          <li>Mathematics – A</li>
-          <li>English – B</li>
-          <li>Physics – C</li>
-          <li>Human Biology – C</li>
-          <li>Chemistry – C</li>
-        </ul>
-
-        <p class="section-subtitle">National 5 Grades (Achieved)</p>
-        <ul class="mini-list">
-          <li>Mathematics – A</li>
-          <li>English – B</li>
-          <li>Chemistry – C</li>
-          <li>Biology – C</li>
-          <li>Physics – C</li>
-          <li>Computing Science – D</li>
-          <li>Practical Electronics – B</li>
-        </ul>
-
-        <p class="section-subtitle">University Offer</p>
-        <p>
-          Conditional offer to study <strong>BEng Robotics Engineering</strong> at <strong>Heriot-Watt University</strong>.
-        </p>
-      </section>
-
-      <!-- RIGHT COLUMN: ACHIEVEMENTS / ACTIVITIES -->
-      <aside class="card">
-        <h2 class="section-title">Achievements &amp; Activities</h2>
-        <ul class="mini-list">
-          <li>West Lothian Badminton award for doubles.</li>
-          <li>Awarded for participation in a Python CodeCamp.</li>
-          <li>Active interest in robotics, coding and practical electronics.</li>
-        </ul>
-      </aside>
-
-      <!-- PROJECTS -->
-      <section class="card">
-        <h2 class="section-title">Projects &amp; Interests in Robotics / Coding</h2>
-
-        <div class="project-item">
-          <div class="project-name">Python CodeCamp Participation</div>
-          <div class="project-meta">Awarded for participation</div>
-          <div class="project-desc">
-            • Took part in a Python CodeCamp, learning the fundamentals of programming.<br />
-            • Practised writing simple programs and understanding automation concepts.<br />
-            • Gained confidence using computing skills essential for engineering.
+            <aside class="card">
+              <h2 class="section-title">Key Skills</h2>
+              <div class="tag-list">
+                <span class="tag">Python (Basic)</span>
+                <span class="tag">Intro UX/UI Design</span>
+                <span class="tag">Robotics &amp; Engineering Interest</span>
+                <span class="tag">Mathematics</span>
+                <span class="tag">Physics</span>
+                <span class="tag">Computing</span>
+                <span class="tag">Problem Solving</span>
+                <span class="tag">Teamwork</span>
+                <span class="tag">Communication</span>
+                <span class="tag">Volunteering Experience</span>
+                <span class="tag">Fitness &amp; Wellbeing</span>
+              </div>
+            </aside>
           </div>
-        </div>
+        </section>
 
-        <div class="project-item">
-          <div class="project-name">Practical Electronics &amp; STEM Learning</div>
-          <div class="project-meta">National 5 Practical Electronics</div>
-          <div class="project-desc">
-            • Studied practical electronics including circuits and components.<br />
-            • Developed hands-on technical skills relevant to robotics.<br />
-            • Built understanding of how hardware and software interact.
-          </div>
-        </div>
-      </section>
+        <!-- EDUCATION TAB -->
+        <section id="tab-education" class="tab-panel" role="tabpanel" aria-labelledby="education">
+          <section class="card">
+            <h2 class="section-title">Education &amp; Qualifications</h2>
+            <p>
+              <strong>West Calder High School</strong><br />
+              S6 Pupil (Completing June 2026)
+            </p>
 
-      <!-- WORK EXPERIENCE / VOLUNTEERING -->
-      <section class="card">
-        <h2 class="section-title">Work Experience &amp; Volunteering</h2>
+            <p class="section-subtitle">S6 Subjects (Predicted Grades)</p>
+            <table class="grades-table">
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Level</th>
+                  <th>Predicted Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mathematics</td>
+                  <td>Advanced Higher</td>
+                  <td>B</td>
+                </tr>
+                <tr>
+                  <td>Biology</td>
+                  <td>Higher</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>Chemistry</td>
+                  <td>Higher</td>
+                  <td>A</td>
+                </tr>
+                <tr>
+                  <td>Computing Science</td>
+                  <td>Higher</td>
+                  <td>B</td>
+                </tr>
+              </tbody>
+            </table>
 
-        <div class="project-item">
-          <div class="project-name">NHS Volunteer</div>
-          <div class="project-meta">St John’s Hospital, Livingston</div>
-          <div class="project-desc">
-            • Supporting staff and patients through volunteering duties.<br />
-            • Developing communication, empathy, and responsibility.<br />
-            • Learning teamwork and professionalism in a healthcare environment.
-          </div>
-        </div>
+            <p class="section-subtitle">Higher Grades (Achieved)</p>
+            <ul class="mini-list">
+              <li>Mathematics – A</li>
+              <li>English – B</li>
+              <li>Physics – C</li>
+              <li>Human Biology – C</li>
+              <li>Chemistry – C</li>
+            </ul>
 
-        <div class="project-item">
-          <div class="project-name">Fitness Training &amp; Wellbeing</div>
-          <div class="project-meta">Personal Development</div>
-          <div class="project-desc">
-            • Training under a fitness coach to improve physical and mental wellbeing.<br />
-            • Building discipline, routine, and resilience through regular training.<br />
-            • Passionate about fitness and interested in becoming a fitness trainer.
-          </div>
-        </div>
-      </section>
+            <p class="section-subtitle">National 5 Grades (Achieved)</p>
+            <ul class="mini-list">
+              <li>Mathematics – A</li>
+              <li>English – B</li>
+              <li>Chemistry – C</li>
+              <li>Biology – C</li>
+              <li>Physics – C</li>
+              <li>Computing Science – D</li>
+              <li>Practical Electronics – B</li>
+            </ul>
 
-      <!-- RIGHT COLUMN: EXTRA SKILLS / INTERESTS -->
-      <aside class="card">
-        <h2 class="section-title">Technical &amp; Other Skills</h2>
-        <ul class="mini-list">
-          <li>Basic Python programming (CodeCamp).</li>
-          <li>Hands-on electronics experience from National 5 Practical Electronics.</li>
-          <li>Strong numeracy (Advanced Higher Maths).</li>
-          <li>Confident with standard IT tools (Microsoft Office, Google Workspace).</li>
-        </ul>
-      </aside>
+            <p class="section-subtitle">University Offer</p>
+            <p>
+              Conditional offer to study <strong>BEng Robotics Engineering</strong> at <strong>Heriot-Watt University</strong>.
+            </p>
+          </section>
+        </section>
 
-      <aside class="card">
-        <h2 class="section-title">Interests</h2>
-        <ul class="mini-list">
-          <li>Robotics and engineering.</li>
-          <li>Coding and learning new technologies.</li>
-          <li>Badminton (doubles).</li>
-          <li>Fitness and wellbeing.</li>
-        </ul>
-      </aside>
+        <!-- COURSES & SKILLS TAB -->
+        <section id="tab-courses" class="tab-panel" role="tabpanel" aria-labelledby="courses">
+          <section class="card">
+            <h2 class="section-title">Courses &amp; Certifications</h2>
+            <ul class="mini-list">
+              <li>
+                <strong>HackerRank – Python (Basic) Certificate</strong> (In progress)<br>
+                Building foundational programming skills in Python, including variables, loops, functions and problem solving in an online challenge environment.
+              </li>
+              <li>
+                <strong>LinkedIn Learning – Getting Started with User Experience (UX/UI Design)</strong> (Completed)<br>
+                Learned the basics of user-centred design, interaction design and accessibility, and how UX influences modern digital products.
+              </li>
+              <li>
+                <strong>Python CodeCamp Participation Award</strong><br>
+                Introduced to Python programming fundamentals, writing simple programs and understanding how code can be used to automate tasks.
+              </li>
+            </ul>
+          </section>
 
-      <aside class="card">
-        <h2 class="section-title">Contact</h2>
-        <ul class="mini-list">
-          <li>📧 <a href="mailto:ivarigonda@gmail.com">ivarigonda@gmail.com</a></li>
-        </ul>
-      </aside>
-    </main>
+          <section class="card">
+            <h2 class="section-title">Technical &amp; Other Skills</h2>
+            <ul class="mini-list">
+              <li>Basic Python programming (HackerRank challenges and CodeCamp experience).</li>
+              <li>Introductory UX/UI design knowledge from LinkedIn Learning.</li>
+              <li>Hands-on electronics experience from National 5 Practical Electronics.</li>
+              <li>Strong numeracy and analytical skills from Maths at National 5, Higher and Advanced Higher level.</li>
+              <li>Confident using school IT systems and standard software (Microsoft Office, Google Workspace).</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- EXPERIENCE & PROJECTS TAB -->
+        <section id="tab-experience" class="tab-panel" role="tabpanel" aria-labelledby="experience">
+          <section class="card">
+            <h2 class="section-title">Work Experience &amp; Volunteering</h2>
+
+            <div class="project-item">
+              <div class="project-name">NHS Volunteer</div>
+              <div class="project-meta">St John’s Hospital, Livingston</div>
+              <div class="project-desc">
+                • Supporting staff and patients with tasks around the hospital.<br>
+                • Developing empathy, communication, teamwork and responsibility in a real-world environment.<br>
+                • Demonstrates a commitment to helping others and contributing to the local community.
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">Fitness Training &amp; Wellbeing</div>
+              <div class="project-meta">Personal Development</div>
+              <div class="project-desc">
+                • Training regularly under a fitness coach to improve physical and mental wellbeing.<br>
+                • Building resilience, discipline and a strong routine through consistent effort.<br>
+                • Developing a passion for fitness and an interest in supporting others as a future fitness trainer.
+              </div>
+            </div>
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">Projects &amp; Technology Interests</h2>
+
+            <div class="project-item">
+              <div class="project-name">Python Programming Practice (HackerRank)</div>
+              <div class="project-meta">In progress</div>
+              <div class="project-desc">
+                • Solving beginner Python challenges to develop computational thinking and logical reasoning.<br>
+                • Learning to work with variables, loops, conditionals and functions.<br>
+                • Preparing for more advanced programming and future software engineering work.
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">User Experience (UX/UI) Foundations</div>
+              <div class="project-meta">Completed – LinkedIn Learning</div>
+              <div class="project-desc">
+                • Gained an introduction to user-centred design and interface principles.<br>
+                • Learned how accessibility, layout and user journeys impact digital products.<br>
+                • Building awareness of how software engineering and design work together in real applications.
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">Python CodeCamp Participation</div>
+              <div class="project-meta">Award Received</div>
+              <div class="project-desc">
+                • Practised writing introductory Python programs to solve small problems.<br>
+                • Learned how code can be used to automate tasks and handle data.<br>
+                • Built confidence in learning new technologies independently.
+              </div>
+            </div>
+
+            <div class="project-item">
+              <div class="project-name">Practical Electronics &amp; STEM Learning</div>
+              <div class="project-meta">National 5 Practical Electronics</div>
+              <div class="project-desc">
+                • Studied circuits, components and electronic systems in a practical setting.<br>
+                • Developed hands-on skills that support future robotics and engineering projects.<br>
+                • Improved understanding of how hardware and software interact.
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <!-- ACHIEVEMENTS & INTERESTS TAB -->
+        <section id="tab-achievements" class="tab-panel" role="tabpanel" aria-labelledby="achievements">
+          <section class="card">
+            <h2 class="section-title">Achievements &amp; Activities</h2>
+            <ul class="mini-list">
+              <li>West Lothian Badminton award for doubles, showing teamwork, coordination and discipline.</li>
+              <li>Volunteering at St John’s Hospital, helping staff and patients in a busy healthcare environment.</li>
+              <li>Completed LinkedIn Learning: Getting Started with User Experience (UX/UI Design).</li>
+              <li>Actively learning Python and problem solving through HackerRank challenges.</li>
+              <li>Committed to regular fitness training to build resilience, routine and mental wellbeing.</li>
+            </ul>
+          </section>
+
+          <section class="card">
+            <h2 class="section-title">Interests</h2>
+            <ul class="mini-list">
+              <li>Robotics and engineering, especially how software and hardware work together.</li>
+              <li>Coding and learning new technologies, starting with Python and computing.</li>
+              <li>Badminton, particularly doubles competitions.</li>
+              <li>Fitness and wellbeing, and supporting others to become healthier and more confident.</li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- CONTACT TAB -->
+        <section id="tab-contact" class="tab-panel" role="tabpanel" aria-labelledby="contact">
+          <section class="card">
+            <h2 class="section-title">Contact Details</h2>
+            <ul class="mini-list">
+              <li><strong>Name:</strong> Ithihaas Varigonda</li>
+              <li><strong>Location:</strong> Livingston, Scotland, United Kingdom</li>
+              <li><strong>Email:</strong> <a href="mailto:ivarigonda@gmail.com">ivarigonda@gmail.com</a></li>
+              <li><strong>Availability:</strong> S6 student, completing school in June 2026. Open to Technology Engineering Graduate Apprenticeship roles.</li>
+            </ul>
+          </section>
+        </section>
+      </div>
+    </div>
 
     <footer class="footer">
       © <span id="year"></span> Ithihaas Varigonda. Online CV for Graduate Apprenticeship applications.
@@ -423,7 +579,29 @@
   </div>
 
   <script>
+    // Auto year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Tab logic
+    const tabButtons = document.querySelectorAll(".tab-button");
+    const tabPanels = document.querySelectorAll(".tab-panel");
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const target = button.getAttribute("data-tab");
+
+        // Update buttons
+        tabButtons.forEach(btn => {
+          btn.classList.toggle("active", btn === button);
+          btn.setAttribute("aria-selected", btn === button ? "true" : "false");
+        });
+
+        // Update panels
+        tabPanels.forEach(panel => {
+          panel.classList.toggle("active", panel.id === "tab-" + target);
+        });
+      });
+    });
   </script>
 </body>
 </html>
