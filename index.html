@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>[SON_FULL_NAME] – Robotics Apprenticeship CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Online CV and portfolio for [SON_FULL_NAME], S6 student and Robotics Engineering offer holder at Heriot-Watt University." />
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --accent: #1f4f8b;
+      --accent-soft: #e2ecff;
+      --text-main: #222222;
+      --text-muted: #555555;
+      --border: #dde3f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #1f4f8b, #4d7edb);
+      color: white;
+      padding: 24px;
+      border-radius: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 14px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .header-main {
+      max-width: 650px;
+    }
+
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .headline {
+      font-size: 1rem;
+      opacity: 0.95;
+      margin-bottom: 8px;
+    }
+
+    .location {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.18);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 0.9rem;
+    }
+
+    .contact a {
+      color: #e4ecff;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .layout {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      body {
+        padding: 16px;
+      }
+      .header {
+        padding: 16px;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .summary {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .tag {
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      border: 1px solid rgba(31, 79, 139, 0.1);
+      white-space: nowrap;
+    }
+
+    .grades-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+
+    .grades-table th,
+    .grades-table td {
+      padding: 6px 8px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .grades-table th {
+      font-weight: 600;
+      background: #f0f4ff;
+    }
+
+    .project-item {
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .project-name {
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .project-desc {
+      color: var(--text-muted);
+    }
+
+    .mini-list {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .mini-list li {
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-main">
+        <div class="pill">Robotics Apprenticeship CV</div>
+        <h1 class="name">[SON_FULL_NAME]</h1>
+        <div class="headline">
+          S6 Student &bull; Robotics Engineering Offer Holder – Heriot-Watt University
+        </div>
+        <div class="location">
+          [TOWN/CITY], Scotland, United Kingdom
+        </div>
+      </div>
+      <div class="contact">
+        <div><strong>Email:</strong> <a href="mailto:[SON_EMAIL]">[SON_EMAIL]</a></div>
+        <!-- Optional: LinkedIn -->
+        <!-- <div><strong>LinkedIn:</strong> <a href="[SON_LINKEDIN_URL]" target="_blank">[SON_LINKEDIN_URL]</a></div> -->
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- LEFT MAIN COLUMN -->
+      <section class="card">
+        <h2 class="section-title">Profile</h2>
+        <p class="summary">
+          I am an S6 student at [SCHOOL_NAME] with a strong interest in robotics, engineering and problem solving. 
+          I have a conditional offer to study Robotics Engineering at Heriot-Watt University and I am also keen to 
+          pursue a Graduate Apprenticeship so I can learn in a real-world environment while contributing to a team.
+          I enjoy applying maths and physics to practical projects and developing my skills in programming and electronics.
+        </p>
+      </section>
+
+      <aside class="card">
+        <h2 class="section-title">Key Skills</h2>
+        <div class="tag-list">
+          <span class="tag">Robotics &amp; Engineering Interest</span>
+          <span class="tag">Mathematics</span>
+          <span class="tag">Physics</span>
+          <span class="tag">Problem Solving</span>
+          <span class="tag">Teamwork</span>
+          <span class="tag">Communication</span>
+          <span class="tag">Time Management</span>
+        </div>
+      </aside>
+
+      <!-- EDUCATION & GRADES -->
+      <section class="card">
+        <h2 class="section-title">Education &amp; Qualifications</h2>
+        <p><strong>[SCHOOL_NAME]</strong><br />
+          S6 Pupil (School year [YEAR])</p>
+
+        <p><strong>S6 Subjects (Current / Predicted Grades)</strong></p>
+        <table class="grades-table">
+          <thead>
+            <tr>
+              <th>Subject</th>
+              <th>Level</th>
+              <th>Grade (Achieved / Predicted)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[Subject 1]</td>
+              <td>[Higher / Adv Higher]</td>
+              <td>[Grade or Predicted Grade]</td>
+            </tr>
+            <tr>
+              <td>[Subject 2]</td>
+              <td>[Higher / Adv Higher]</td>
+              <td>[Grade or Predicted Grade]</td>
+            </tr>
+            <tr>
+              <td>[Subject 3]</td>
+              <td>[Higher / Adv Higher]</td>
+              <td>[Grade or Predicted Grade]</td>
+            </tr>
+            <!-- Add more rows as needed -->
+          </tbody>
+        </table>
+
+        <p style="margin-top: 10px;">
+          <strong>University Offer:</strong><br />
+          Conditional offer to study <strong>BEng Robotics Engineering</strong> at Heriot-Watt University.
+        </p>
+      </section>
+
+      <!-- RIGHT COLUMN: ACHIEVEMENTS / ACTIVITIES -->
+      <aside class="card">
+        <h2 class="section-title">Achievements &amp; Activities</h2>
+        <ul class="mini-list">
+          <li>[e.g. Prefect / House Captain / Pupil Council]</li>
+          <li>[e.g. Duke of Edinburgh (Bronze/Silver/Gold)]</li>
+          <li>[e.g. Maths / Physics / Computing competitions]</li>
+          <li>[e.g. Robotics / STEM club participation]</li>
+          <li>[e.g. Sports / Music / Other leadership roles]</li>
+        </ul>
+      </aside>
+
+      <!-- PROJECTS -->
+      <section class="card">
+        <h2 class="section-title">Projects</h2>
+
+        <div class="project-item">
+          <div class="project-name">[PROJECT 1 TITLE]</div>
+          <div class="project-meta">[e.g. School project / Personal project] &bull; [Year]</div>
+          <div class="project-desc">
+            • Briefly describe what the project was (e.g. built a line-following robot using Arduino).<br />
+            • Mention tools/tech used (e.g. Arduino, sensors, Python, C++).<br />
+            • Mention what he learned (e.g. debugging, teamwork, time management).
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">[PROJECT 2 TITLE]</div>
+          <div class="project-meta">[e.g. Coursework / Competition] &bull; [Year]</div>
+          <div class="project-desc">
+            • Short explanation of the project.<br />
+            • His specific contribution.<br />
+            • Any outcome (grade, presentation, demonstration).
+          </div>
+        </div>
+      </section>
+
+      <!-- WORK EXPERIENCE / VOLUNTEERING -->
+      <section class="card">
+        <h2 class="section-title">Work Experience &amp; Volunteering</h2>
+
+        <div class="project-item">
+          <div class="project-name">[Role / Placement Name]</div>
+          <div class="project-meta">[Organisation] &bull; [Dates]</div>
+          <div class="project-desc">
+            • List what he did (e.g. shadowing engineers, helping staff, customer service, admin).<br />
+            • Skills he developed (e.g. reliability, working to a rota, communication with customers).
+          </div>
+        </div>
+
+        <div class="project-item">
+          <div class="project-name">[Additional role or volunteering]</div>
+          <div class="project-meta">[Organisation] &bull; [Dates]</div>
+          <div class="project-desc">
+            • Brief points showing responsibility and commitment.
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: EXTRA SKILLS / INTERESTS / CONTACT -->
+      <aside class="card">
+        <h2 class="section-title">Technical &amp; Other Skills</h2>
+        <ul class="mini-list">
+          <li>[e.g. Basic Python / C++ / Scratch / other languages]</li>
+          <li>[e.g. Familiar with Arduino / Raspberry Pi / robotics kits]</li>
+          <li>Comfortable with Microsoft Office / Google Workspace</li>
+          <li>Full UK driving licence (if applicable)</li>
+        </ul>
+      </aside>
+
+      <aside class="card">
+        <h2 class="section-title">Interests</h2>
+        <ul class="mini-list">
+          <li>[e.g. Building / tinkering with electronics]</li>
+          <li>[e.g. Coding small games or tools]</li>
+          <li>[e.g. Football / Gym / Music / Art]</li>
+        </ul>
+      </aside>
+
+      <aside class="card">
+        <h2 class="section-title">Contact</h2>
+        <ul class="mini-list">
+          <li>📧 <a href="mailto:[SON_EMAIL]">[SON_EMAIL]</a></li>
+          <!-- Optional LinkedIn line -->
+          <!-- <li>🔗 <a href="[SON_LINKEDIN_URL]" target="_blank">LinkedIn Profile</a></li> -->
+        </ul>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> [SON_FULL_NAME]. Online CV for Graduate Apprenticeship applications.
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
